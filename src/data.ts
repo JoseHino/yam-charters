@@ -113,6 +113,39 @@ export const GALLERY: { src: string; alt: string }[] = [
   { src: "https://images.unsplash.com/photo-1540946485063-a40da27545f8?auto=format&fit=crop&w=1200&q=80", alt: "Puerto deportivo al atardecer" },
 ]
 
+/**
+ * Cifras de confianza que se muestran bajo el hero.
+ * 👉 Ajusta los números a tu realidad.
+ */
+export const STATS: { value: string; label: string }[] = [
+  { value: "4,9★", label: "Valoración media" },
+  { value: "+500", label: "Clientes a bordo" },
+  { value: "10", label: "Pasajeros máx." },
+  { value: "100%", label: "Patrón incluido" },
+]
+
+/**
+ * Reseñas de clientes (marcadores de posición).
+ * 👉 Sustitúyelas por reseñas reales de Google / TripAdvisor.
+ */
+export const TESTIMONIALS: { name: string; text: string; origin: string }[] = [
+  {
+    name: "Laura G.",
+    text: "Un día inolvidable. El patrón super atento, los cócteles riquísimos y las vistas de Marbella desde el mar son otro nivel. Repetiremos seguro.",
+    origin: "Madrid",
+  },
+  {
+    name: "James W.",
+    text: "Perfect afternoon out of Puerto Banús. Everything was included and the free parking made it so easy. Highly recommended!",
+    origin: "London",
+  },
+  {
+    name: "Carlos & Marta",
+    text: "Lo reservamos para nuestro aniversario y fue un acierto total. Nos bañamos en una cala preciosa y volvimos al atardecer. 10 de 10.",
+    origin: "Sevilla",
+  },
+]
+
 /** Datos de contacto y ubicación del barco. */
 export const CONTACT = {
   business: "Yam Charters",

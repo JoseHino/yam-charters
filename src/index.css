@@ -6,19 +6,35 @@
   --color-sea: #1f7a8c;
   --color-sand: #f4efe6;
   --color-gold: #c9a14a;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 72px; /* deja hueco para la barra fija al saltar a anclas */
 }
 
 body {
   margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-sans);
   background: var(--color-sand);
   color: #1b2733;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Titulares con la tipografía display */
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+/* Selección de texto con color de marca */
+::selection {
+  background: var(--color-gold);
+  color: var(--color-navy);
 }
 
 /* Campo de formulario reutilizable */
@@ -36,4 +52,53 @@ body {
 .input:focus {
   border-color: var(--color-sea);
   box-shadow: 0 0 0 3px rgba(31, 122, 140, 0.15);
+}
+
+/* ---------- Animaciones ---------- */
+
+/* Aparición al hacer scroll (lo activa el componente <Reveal/>) */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Zoom lento tipo "Ken Burns" para la imagen del hero */
+@keyframes kenburns {
+  from { transform: scale(1); }
+  to { transform: scale(1.12); }
+}
+.animate-kenburns {
+  animation: kenburns 18s ease-out forwards;
+}
+
+/* Latido suave para el botón flotante de WhatsApp */
+@keyframes softpulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45); }
+  50% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+}
+.animate-softpulse {
+  animation: softpulse 2.4s ease-out infinite;
+}
+
+/* Indicador de scroll en el hero */
+@keyframes bobbing {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+.animate-bobbing {
+  animation: bobbing 1.8s ease-in-out infinite;
+}
+
+/* Respeta a quien prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .animate-kenburns, .animate-softpulse, .animate-bobbing { animation: none; }
+  html { scroll-behavior: auto; }
 }

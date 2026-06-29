@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react"
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js"
+import Reveal from "./Reveal"
 import {
   PRICES,
   DURATIONS,
@@ -43,6 +44,17 @@ export default function Booking() {
   const season = useMemo(() => seasonForDate(parseLocal(date)), [date])
   const total = PRICES[season][duration]
 
+  // Hora de fin = hora de inicio + duración.
+  const endTime = useMemo(() => {
+    const [h, m] = time.split(":").map(Number)
+    const end = (h + duration) % 24
+    return `${String(end).padStart(2, "0")}:${String(m).padStart(2, "0")}`
+  }, [time, duration])
+
+  // Datos de contacto obligatorios para poder reservar/pagar.
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  const canBook = name.trim().length > 1 && phone.trim().length >= 6 && emailOk
+
   const prettyDate = parseLocal(date).toLocaleDateString("es-ES", {
     weekday: "long",
     day: "numeric",
@@ -67,15 +79,16 @@ export default function Booking() {
   return (
     <section id="reservar" className="bg-sand py-16 sm:py-20">
       <div className="mx-auto max-w-5xl px-4">
-        <div className="mb-8 text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest text-sea">Reserva</p>
-          <h2 className="mt-1 text-3xl font-bold text-navy sm:text-4xl">
+        <Reveal className="mb-10 text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sea">Reserva</p>
+          <h2 className="mt-2 text-3xl font-semibold text-navy sm:text-4xl">
             Configura tu salida
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-slate-600">
             El precio se calcula automáticamente según la temporada y la duración.
           </p>
-        </div>
+          <span className="mx-auto mt-4 block h-px w-16 bg-gradient-to-r from-transparent via-gold to-transparent" />
+        </Reveal>
 
         <div className="grid gap-6 md:grid-cols-5">
           {/* ---- Formulario ---- */}
@@ -162,7 +175,7 @@ export default function Booking() {
               <h3 className="text-lg font-semibold">Resumen</h3>
               <dl className="mt-4 space-y-2 text-sm">
                 <Row k="Fecha" v={prettyDate} />
-                <Row k="Hora" v={`${time} h`} />
+                <Row k="Horario" v={`${time} – ${endTime} h`} />
                 <Row k="Duración" v={`${duration} horas`} />
                 <Row
                   k="Temporada"
@@ -198,6 +211,17 @@ export default function Booking() {
                       activar el cobro real.
                     </p>
                   )}
+                  {!canBook && (
+                    <p className="mb-3 rounded-lg bg-gold/20 p-2 text-center text-[12px] text-gold">
+                      Completa tu nombre, email y teléfono para continuar.
+                    </p>
+                  )}
+                  <div
+                    className={
+                      "transition " + (canBook ? "" : "pointer-events-none select-none opacity-40")
+                    }
+                    aria-disabled={!canBook}
+                  >
                   <div className="rounded-xl bg-white p-2">
                     <PayPalScriptProvider
                       options={{ clientId: PAYPAL_CLIENT_ID, currency: "EUR" }}
@@ -239,6 +263,7 @@ export default function Booking() {
                     >
                       Email
                     </a>
+                  </div>
                   </div>
                 </div>
               )}

@@ -1,4 +1,5 @@
 import { CONTACT } from "../data"
+import Reveal from "./Reveal"
 
 export default function Contact() {
   const wa = `https://wa.me/${CONTACT.whatsapp}`
@@ -21,13 +22,14 @@ export default function Contact() {
   return (
     <section id="contacto" className="bg-navy py-16 text-white sm:py-20">
       <div className="mx-auto max-w-5xl px-4">
-        <div className="mb-8 text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold">Contacto y ubicación</p>
-          <h2 className="mt-1 text-3xl font-bold sm:text-4xl">¿Hablamos?</h2>
+        <Reveal className="mb-10 text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">Contacto y ubicación</p>
+          <h2 className="mt-2 text-3xl font-semibold sm:text-4xl">¿Hablamos?</h2>
           <p className="mx-auto mt-3 max-w-xl text-white/70">
             Reserva tu salida o resuelve tus dudas. Te respondemos al momento por WhatsApp.
           </p>
-        </div>
+          <span className="mx-auto mt-4 block h-px w-16 bg-gradient-to-r from-transparent via-gold to-transparent" />
+        </Reveal>
 
         <div className="grid gap-4 sm:grid-cols-3">
           <a
