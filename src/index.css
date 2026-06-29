@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0d2b45;
+  --color-navy-700: #133a5e;
+  --color-sea: #1f7a8c;
+  --color-sand: #f4efe6;
+  --color-gold: #c9a14a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--color-sand);
+  color: #1b2733;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Campo de formulario reutilizable */
+.input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid #d5dbe3;
+  background: #fff;
+  padding: 0.625rem 0.75rem;
+  font-size: 0.95rem;
+  color: #1b2733;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.input:focus {
+  border-color: var(--color-sea);
+  box-shadow: 0 0 0 3px rgba(31, 122, 140, 0.15);
+}
