@@ -1,4 +1,4 @@
-import { BOAT, GALLERY } from "../data"
+import { BOAT, BRAND, GALLERY } from "../data"
 
 export default function Hero() {
   return (
@@ -15,15 +15,19 @@ export default function Hero() {
 
       <div className="relative mx-auto max-w-3xl px-6 text-center">
         <p className="mb-3 inline-block rounded-full border border-white/30 bg-white/10 px-4 py-1 text-xs font-medium uppercase tracking-widest">
-          {BOAT.location}
+          {BRAND.name} · {BOAT.location}
         </p>
         <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
-          {BOAT.model}
+          {BRAND.claim}
         </h1>
-        <p className="mx-auto mt-4 max-w-xl text-lg text-white/85">{BOAT.tagline}</p>
-        <p className="mx-auto mt-3 max-w-xl text-sm text-white/70">
-          Parking · comida · bebida incluidos
+        <p className="mx-auto mt-4 max-w-xl text-lg text-white/85">
+          A bordo del {BOAT.model}. Cócteles, comida y bebida incluidos.
         </p>
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-2 text-sm">
+          <span className="rounded-full bg-gold px-3 py-1 font-semibold text-navy">🅿️ Parking GRATUITO</span>
+          <span className="rounded-full border border-white/30 bg-white/10 px-3 py-1">🍸 Cócteles a bordo</span>
+          <span className="rounded-full border border-white/30 bg-white/10 px-3 py-1">⚓ Patrón incluido</span>
+        </div>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <a
             href="#reservar"

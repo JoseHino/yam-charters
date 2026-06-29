@@ -43,8 +43,8 @@ Requisitos: **Node 18+** y npm.
 
 ```bash
 # 1) Clonar
-git clone https://github.com/JoseHino/alquiler-barco-puerto-banus.git
-cd alquiler-barco-puerto-banus
+git clone https://github.com/JoseHino/yam-charters.git
+cd yam-charters
 
 # 2) Instalar dependencias
 npm install
@@ -78,7 +78,7 @@ La web funciona en **modo demo** hasta que configures tu cuenta:
 El despliegue es automático con **GitHub Actions** (`.github/workflows/deploy.yml`):
 cada push a `main` compila la web y la publica en GitHub Pages.
 
-- **URL:** <https://josehino.github.io/alquiler-barco-puerto-banus/>
+- **URL:** <https://josehino.github.io/yam-charters/>
 
 Para desplegar en **Vercel/Netlify** en su lugar, importa el repo y usa
 `npm run build` (carpeta de salida `dist`); no necesitas la variable `GITHUB_PAGES`.

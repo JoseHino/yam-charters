@@ -39,13 +39,18 @@ export const eur = (v: number) =>
     minimumFractionDigits: 2,
   }).format(v)
 
-// -------------------------------------------------------------- Barco
+// -------------------------------------------------------------- Marca / Barco
+export const BRAND = {
+  name: "Yam Charters",
+  claim: "El mejor charter de Puerto Banús",
+}
+
 export const BOAT = {
   model: "Jeanneau Sun Odyssey 42 CC",
-  tagline: "Navega la Costa del Sol a bordo de un velero icónico",
+  tagline: "El mejor charter de Puerto Banús: navega la Costa del Sol con cócteles, comida y parking gratuito incluidos",
   location: "Puerto Banús · Marbella",
   intro:
-    "El Sun Odyssey 42 CC es un velero elegante y cómodo, perfecto para una jornada inolvidable por la bahía de Marbella. Sale desde Puerto Banús con parking, comida y bebida incluidos: solo tienes que elegir el día y la duración.",
+    "Vive el día perfecto en el mar a bordo de un Jeanneau Sun Odyssey 42 CC, un velero elegante y espacioso. En Yam Charters lo preparamos todo para que tú solo disfrutes: cócteles recién preparados a bordo, picoteo mediterráneo, bebida fría y un patrón profesional al mando. Salimos desde el corazón de Puerto Banús y, lo mejor, con parking gratuito junto al puerto. Elige el día y la duración: nosotros ponemos el resto.",
 }
 
 /** Especificaciones técnicas (orientativas del modelo). */
@@ -60,27 +65,38 @@ export const SPECS: { label: string; value: string }[] = [
   { label: "Velas", value: "Mayor + Génova enrollable" },
 ]
 
-/** Servicios incluidos en todos los alquileres. */
-export const SERVICES: { icon: string; title: string; text: string }[] = [
+/** Servicios incluidos en todos los alquileres. (`highlight` lo resalta en la web.) */
+export const SERVICES: { icon: string; title: string; text: string; highlight?: boolean }[] = [
   {
     icon: "🅿️",
-    title: "Parking incluido",
-    text: "Plaza de aparcamiento gratuita junto al puerto para que llegues sin preocupaciones.",
+    title: "Parking GRATUITO",
+    text: "Plaza de aparcamiento gratis junto al puerto: olvídate del problema de aparcar en Puerto Banús. Llegas, dejas el coche y embarcas.",
+    highlight: true,
+  },
+  {
+    icon: "🍸",
+    title: "Cócteles a bordo",
+    text: "Mojitos, gin-tonics y cócteles recién preparados durante la travesía. Brinda frente al skyline de Marbella con una copa en la mano.",
   },
   {
     icon: "🍽️",
-    title: "Comida a bordo",
-    text: "Picoteo mediterráneo y aperitivos frescos preparados para disfrutar durante la travesía.",
+    title: "Comida incluida",
+    text: "Picoteo mediterráneo y aperitivos frescos para disfrutar mientras navegas, sin coste añadido.",
   },
   {
     icon: "🥂",
     title: "Bebida incluida",
-    text: "Agua, refrescos, cerveza y una copa de cava para brindar frente al skyline de Marbella.",
+    text: "Agua, refrescos, cerveza y cava bien fríos durante toda la salida. Barra libre de buenos momentos.",
   },
   {
     icon: "⚓",
     title: "Patrón profesional",
-    text: "Skipper titulado al mando: tú solo te dedicas a relajarte y disfrutar del mar.",
+    text: "Skipper titulado al mando: tú solo te dedicas a relajarte, bañarte y disfrutar del mar.",
+  },
+  {
+    icon: "📸",
+    title: "Planazo en el mar",
+    text: "Calas, baño, atardeceres y fotos de postal. Ideal para parejas, grupos de amigos, cumpleaños y celebraciones.",
   },
 ]
 
@@ -97,12 +113,15 @@ export const GALLERY: { src: string; alt: string }[] = [
   { src: "https://images.unsplash.com/photo-1540946485063-a40da27545f8?auto=format&fit=crop&w=1200&q=80", alt: "Puerto deportivo al atardecer" },
 ]
 
-/** Datos de contacto — 👉 marcador de posición, reemplázalos por los reales. */
+/** Datos de contacto y ubicación del barco. */
 export const CONTACT = {
-  business: "Charter Puerto Banús",
-  phone: "+34 600 000 000",
+  business: "Yam Charters",
+  phone: "+34 665 09 20 90",
   // En formato internacional sin signos para el enlace de WhatsApp:
-  whatsapp: "34600000000",
-  email: "reservas@ejemplo.com",
-  address: "Muelle de Ribera, Puerto Banús, 29660 Marbella (Málaga)",
+  whatsapp: "34665092090",
+  email: "reservas@yamcharters.com", // 👉 placeholder, cámbialo por tu email real
+  address: "Puerto Banús, 29660 Marbella (Málaga)",
+  // Ubicación exacta del amarre del barco
+  lat: 36.485131,
+  lng: -4.951235,
 }

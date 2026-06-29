@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { BOAT } from "../data"
+import { BRAND, BOAT } from "../data"
 
 const LINKS = [
   ["#galeria", "Galería"],
@@ -16,8 +16,10 @@ export default function Nav() {
         <a href="#inicio" className="flex items-center gap-2 font-semibold tracking-tight">
           <span className="text-xl">⛵</span>
           <span className="leading-tight">
-            Sun Odyssey 42 CC
-            <span className="block text-[11px] font-normal text-white/60">{BOAT.location}</span>
+            {BRAND.name}
+            <span className="block text-[11px] font-normal text-white/60">
+              {BOAT.model} · {BOAT.location}
+            </span>
           </span>
         </a>
 
