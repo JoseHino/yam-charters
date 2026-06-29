@@ -24,7 +24,7 @@ export default function Hero() {
           A bordo del {BOAT.model}. Cócteles, comida y bebida incluidos.
         </p>
         <div className="mt-5 flex flex-wrap items-center justify-center gap-2 text-sm">
-          <span className="rounded-full bg-gold px-3 py-1 font-semibold text-navy">🅿️ Parking GRATUITO</span>
+          <span className="rounded-full bg-gold px-3 py-1 font-semibold text-navy">🅿️ Parking gratis (Cristamar)</span>
           <span className="rounded-full border border-white/30 bg-white/10 px-3 py-1">🍸 Cócteles a bordo</span>
           <span className="rounded-full border border-white/30 bg-white/10 px-3 py-1">⚓ Patrón incluido</span>
         </div>

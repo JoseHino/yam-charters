@@ -2,12 +2,20 @@ import { CONTACT } from "../data"
 
 export default function Contact() {
   const wa = `https://wa.me/${CONTACT.whatsapp}`
-  const { lat, lng } = CONTACT
+  const { lat, lng, parkingLat, parkingLng, parkingName, parkingWalk } = CONTACT
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`
-  const d = 0.008
+  const parkingMapsUrl = `https://www.google.com/maps/search/?api=1&query=${parkingLat},${parkingLng}`
+  const walkUrl =
+    `https://www.google.com/maps/dir/?api=1&origin=${parkingLat},${parkingLng}` +
+    `&destination=${lat},${lng}&travelmode=walking`
+  // Encuadre que incluye barco y parking, con un marcador en cada punto
+  const minLat = Math.min(lat, parkingLat) - 0.0015
+  const maxLat = Math.max(lat, parkingLat) + 0.0015
+  const minLng = Math.min(lng, parkingLng) - 0.003
+  const maxLng = Math.max(lng, parkingLng) + 0.003
   const embedUrl =
     `https://www.openstreetmap.org/export/embed.html?bbox=` +
-    `${lng - d}%2C${lat - d / 2}%2C${lng + d}%2C${lat + d / 2}` +
+    `${minLng}%2C${minLat}%2C${maxLng}%2C${maxLat}` +
     `&layer=mapnik&marker=${lat}%2C${lng}`
 
   return (
@@ -58,16 +66,35 @@ export default function Contact() {
               <div className="text-sm text-white/70">{CONTACT.address}</div>
             </div>
             <span className="rounded-full bg-gold px-3 py-1 text-xs font-bold text-navy">
-              🅿️ Parking GRATUITO junto al barco
+              🅿️ {parkingName} gratis · a {parkingWalk}
             </span>
           </div>
           <iframe
-            title="Ubicación del barco en Puerto Banús"
+            title="Ubicación del barco y del parking en Puerto Banús"
             src={embedUrl}
             className="h-72 w-full border-0"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />
+
+          {/* Info del parking gratuito */}
+          <div className="border-t border-white/10 bg-white/5 px-5 py-4">
+            <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+              <div className="text-sm">
+                <span className="font-semibold text-gold">🅿️ Parking gratuito:</span>{" "}
+                {parkingName} — a <b>{parkingWalk}</b> del barco.
+              </div>
+              <div className="flex gap-4 text-sm font-semibold">
+                <a href={parkingMapsUrl} target="_blank" rel="noopener" className="text-gold hover:underline">
+                  Ver parking →
+                </a>
+                <a href={walkUrl} target="_blank" rel="noopener" className="text-gold hover:underline">
+                  Ruta a pie al barco →
+                </a>
+              </div>
+            </div>
+          </div>
+
           <div className="px-5 py-3 text-center">
             <a
               href={mapsUrl}
@@ -75,7 +102,7 @@ export default function Contact() {
               rel="noopener"
               className="text-sm font-semibold text-gold hover:underline"
             >
-              Cómo llegar (Google Maps) →
+              Cómo llegar al barco (Google Maps) →
             </a>
           </div>
         </div>

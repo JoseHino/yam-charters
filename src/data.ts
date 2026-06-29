@@ -70,7 +70,7 @@ export const SERVICES: { icon: string; title: string; text: string; highlight?: 
   {
     icon: "🅿️",
     title: "Parking GRATUITO",
-    text: "Plaza de aparcamiento gratis junto al puerto: olvídate del problema de aparcar en Puerto Banús. Llegas, dejas el coche y embarcas.",
+    text: "Aparca gratis en el Parking Cristamar, a solo 5 minutos andando del barco. Olvídate del problema de aparcar en Puerto Banús: llegas, dejas el coche y un corto paseo te lleva al amarre.",
     highlight: true,
   },
   {
@@ -124,4 +124,9 @@ export const CONTACT = {
   // Ubicación exacta del amarre del barco
   lat: 36.485131,
   lng: -4.951235,
+  // Parking gratuito (a 5 min andando del barco)
+  parkingName: "Parking Cristamar",
+  parkingLat: 36.490068,
+  parkingLng: -4.950309,
+  parkingWalk: "5 minutos andando",
 }
