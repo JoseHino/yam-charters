@@ -1,4 +1,4 @@
-import { BOAT, BRAND, GALLERY, STATS } from "../data"
+import { BOAT, BRAND, STATS, SHARED, eur, img } from "../data"
 
 export default function Hero() {
   return (
@@ -6,14 +6,14 @@ export default function Hero() {
       id="inicio"
       className="relative flex min-h-[92vh] items-center justify-center overflow-hidden text-white"
     >
-      {/* Imagen de fondo con zoom lento */}
+      {/* Foto real navegando, con zoom lento */}
       <img
-        src={GALLERY[0].src}
-        alt={GALLERY[0].alt}
+        src={img("hero-navegando.jpg")}
+        alt="Navegando a bordo del Sun Odyssey 42 CC por la Costa del Sol"
         fetchPriority="high"
         className="animate-kenburns absolute inset-0 h-full w-full object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-navy/75 via-navy/55 to-navy/95" />
+      <div className="absolute inset-0 bg-gradient-to-b from-navy/75 via-navy/50 to-navy/95" />
       {/* Viñeteado sutil para dar profundidad */}
       <div className="pointer-events-none absolute inset-0 [box-shadow:inset_0_0_180px_60px_rgba(7,20,33,0.55)]" />
 
@@ -23,24 +23,23 @@ export default function Hero() {
           {BRAND.name} · {BOAT.location}
         </p>
 
-        <h1 className="text-4xl font-semibold leading-[1.05] drop-shadow-sm sm:text-5xl md:text-[3.75rem]">
+        <h1 className="text-4xl font-semibold leading-[1.08] drop-shadow-sm sm:text-5xl md:text-[3.5rem]">
           {BRAND.claim}
         </h1>
 
         <p className="mx-auto mt-5 max-w-xl text-lg font-light text-white/90">
-          A bordo del {BOAT.model}. Cócteles, comida y bebida incluidos, con patrón
-          profesional y parking gratuito.
+          {BOAT.tagline}
         </p>
 
         <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-sm">
           <span className="rounded-full bg-gold px-3.5 py-1.5 font-semibold text-navy shadow-sm">
-            🅿️ Parking gratis (Cristamar)
+            🌅 Compartida desde {eur(SHARED.pricePerPerson).replace(",00", "")}/persona
           </span>
           <span className="rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 backdrop-blur-sm">
-            🍸 Cócteles a bordo
+            🔒 Privada con −10%
           </span>
           <span className="rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 backdrop-blur-sm">
-            ⚓ Patrón incluido
+            🅿️ Parking gratis
           </span>
         </div>
 
@@ -52,10 +51,10 @@ export default function Hero() {
             Reservar ahora
           </a>
           <a
-            href="#galeria"
+            href="#experiencias"
             className="rounded-full border border-white/40 px-8 py-3.5 font-semibold text-white backdrop-blur-sm transition hover:bg-white/10"
           >
-            Ver el barco
+            Ver experiencias
           </a>
         </div>
 
@@ -74,7 +73,7 @@ export default function Hero() {
 
       {/* Indicador de scroll */}
       <a
-        href="#galeria"
+        href="#experiencias"
         aria-label="Desplázate para ver más"
         className="animate-bobbing absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 hover:text-white"
       >

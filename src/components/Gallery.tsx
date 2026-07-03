@@ -30,10 +30,10 @@ export default function Gallery() {
 
   return (
     <section id="galeria" className="mx-auto max-w-6xl px-4 py-20 sm:py-24">
-      <SectionTitle kicker="Galería" title="Descubre el Sun Odyssey 42 CC" />
+      <SectionTitle kicker="Galería" title="Así se vive a bordo" />
 
       {/* Rejilla tipo bento: la primera imagen ocupa el doble */}
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:grid-rows-2">
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
         {GALLERY.map((img, i) => (
           <Reveal
             key={img.src}
@@ -63,10 +63,6 @@ export default function Gallery() {
           </Reveal>
         ))}
       </div>
-
-      <p className="mt-4 text-center text-xs text-slate-500">
-        Imágenes de muestra · se reemplazarán por fotos reales del barco
-      </p>
 
       {/* ---- Lightbox ---- */}
       {active !== null && (

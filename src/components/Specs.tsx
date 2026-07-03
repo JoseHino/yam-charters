@@ -1,4 +1,4 @@
-import { BOAT, SPECS, GALLERY } from "../data"
+import { BOAT, SPECS, img } from "../data"
 import { SectionTitle } from "./Gallery"
 import Reveal from "./Reveal"
 
@@ -11,8 +11,8 @@ export default function Specs() {
           <Reveal className="relative">
             <div className="overflow-hidden rounded-3xl shadow-xl">
               <img
-                src={GALLERY[2].src}
-                alt={GALLERY[2].alt}
+                src={img("proa-teca.jpg")}
+                alt="Cubierta de teca y proa del Sun Odyssey 42 CC"
                 loading="lazy"
                 className="h-full w-full object-cover"
               />

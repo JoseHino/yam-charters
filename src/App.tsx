@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react"
 import Nav from "./components/Nav"
 import Hero from "./components/Hero"
+import Experiences from "./components/Experiences"
 import Gallery from "./components/Gallery"
 import Specs from "./components/Specs"
 import Services from "./components/Services"
@@ -19,6 +20,7 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
+        <Experiences />
         <Gallery />
         <Specs />
         <Services />

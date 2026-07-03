@@ -2,9 +2,10 @@ import { useEffect, useState } from "react"
 import { BRAND, BOAT } from "../data"
 
 const LINKS = [
+  ["#experiencias", "Experiencias"],
   ["#galeria", "Galería"],
   ["#barco", "El barco"],
-  ["#servicios", "Servicios"],
+  ["#servicios", "Incluido"],
   ["#opiniones", "Opiniones"],
   ["#contacto", "Contacto"],
 ]

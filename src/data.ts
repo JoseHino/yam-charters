@@ -1,19 +1,46 @@
 // ====================================================================
 //  Datos del producto y configuración del negocio.
-//  👉 Reemplaza los marcadores de posición (imágenes y contacto) por los
-//     reales cuando los tengas.
 // ====================================================================
 
 export type Duration = 2 | 3 | 4 | 6 | 8
 export type Season = "baja" | "alta"
 
-/** Tabla de precios (IVA incluido), en euros, por duración y temporada. */
+/** Ruta base (en GitHub Pages la web vive bajo /yam-charters/). */
+const BASE = import.meta.env.BASE_URL
+
+/** Resuelve una imagen de public/img respetando la ruta base. */
+export const img = (file: string) => `${BASE}img/${file}`
+
+/**
+ * Tabla de precios de SALIDA PRIVADA (IVA incluido), en euros,
+ * por duración y temporada. Ya incluyen el 10% de descuento
+ * sobre la tarifa anterior (ver PRICES_BEFORE).
+ */
 export const PRICES: Record<Season, Record<Duration, number>> = {
+  baja: { 2: 433.35, 3: 550.8, 4: 680.4, 6: 955.8, 8: 1215 },
+  alta: { 2: 486, 3: 623.7, 4: 761.4, 6: 1065.15, 8: 1377 },
+}
+
+/** Tarifa anterior, para mostrarla tachada junto al precio rebajado. */
+export const PRICES_BEFORE: Record<Season, Record<Duration, number>> = {
   baja: { 2: 481.5, 3: 612, 4: 756, 6: 1062, 8: 1350 },
   alta: { 2: 540, 3: 693, 4: 846, 6: 1183.5, 8: 1530 },
 }
 
 export const DURATIONS: Duration[] = [2, 3, 4, 6, 8]
+
+/** Salidas compartidas: pagas por plaza y compartes barco. */
+export const SHARED = {
+  pricePerPerson: 55,
+  duration: "3 horas aprox.",
+  maxPax: 10,
+  slots: [
+    { id: "manana", label: "Salida de mañana", time: "11:00" },
+    { id: "sunset", label: "Salida sunset", time: "Atardecer (según época)" },
+  ],
+  note:
+    "Grupo reducido (máx. 10 personas), patrón profesional, cóctel de bienvenida, picoteo mediterráneo y baño en una cala. Confirmamos la hora exacta al reservar.",
+}
 
 /**
  * Temporada según la fecha:
@@ -42,15 +69,16 @@ export const eur = (v: number) =>
 // -------------------------------------------------------------- Marca / Barco
 export const BRAND = {
   name: "Yam Charters",
-  claim: "El mejor charter de Puerto Banús",
+  claim: "No alquilamos un barco. Creamos tu mejor día en el mar.",
 }
 
 export const BOAT = {
   model: "Jeanneau Sun Odyssey 42 CC",
-  tagline: "El mejor charter de Puerto Banús: navega la Costa del Sol con cócteles, comida y parking gratuito incluidos",
+  tagline:
+    "Experiencias únicas a vela desde Puerto Banús: coctelería, sabores mediterráneos, calas, delfines y atardeceres que no se olvidan.",
   location: "Puerto Banús · Marbella",
   intro:
-    "Vive el día perfecto en el mar a bordo de un Jeanneau Sun Odyssey 42 CC, un velero elegante y espacioso. En Yam Charters lo preparamos todo para que tú solo disfrutes: cócteles recién preparados a bordo, picoteo mediterráneo, bebida fría y un patrón profesional al mando. Salimos desde el corazón de Puerto Banús y, lo mejor, con parking gratuito junto al puerto. Elige el día y la duración: nosotros ponemos el resto.",
+    "El escenario de tu experiencia es un Jeanneau Sun Odyssey 42 CC: un velero de casi 13 metros, elegante, estable y con cubierta de teca, pensado para disfrutar del mar con todas las comodidades. Amplia bañera para compartir mesa y cócteles, solárium en proa, 3 camarotes y 2 aseos. Sale del corazón de Puerto Banús con patrón profesional y parking gratuito junto al puerto.",
 }
 
 /** Especificaciones técnicas (orientativas del modelo). */
@@ -65,7 +93,59 @@ export const SPECS: { label: string; value: string }[] = [
   { label: "Velas", value: "Mayor + Génova enrollable" },
 ]
 
-/** Servicios incluidos en todos los alquileres. (`highlight` lo resalta en la web.) */
+// -------------------------------------------------------------- Experiencias
+/**
+ * Experiencias a bordo: el corazón de la web. Todas se disfrutan
+ * en cualquier salida; las privadas se personalizan al 100%.
+ */
+export const EXPERIENCES: {
+  image: string
+  alt: string
+  title: string
+  text: string
+  tag?: string
+}[] = [
+  {
+    image: img("atardecer.jpg"),
+    alt: "Silueta del velero al atardecer frente a la Costa del Sol",
+    title: "Sunset a vela",
+    text: "La hora dorada vista desde el mar: el sol cayendo tras La Concha, una copa fría en la mano y Marbella encendiéndose a lo lejos. Nuestra salida más pedida.",
+    tag: "La favorita",
+  },
+  {
+    image: img("relax-a-bordo.jpg"),
+    alt: "Invitados relajándose en la cubierta del velero",
+    title: "Coctelería a bordo",
+    text: "Mojitos, spritz y gin-tonics preparados al momento mientras navegas. Cóctel de bienvenida incluido y barra a bordo durante toda la travesía.",
+  },
+  {
+    image: img("cockpit.jpg"),
+    alt: "Bañera del velero con mesa para comer a bordo",
+    title: "Degustación mediterránea",
+    text: "Picoteo fresco de la tierra: ibéricos, quesos, fruta y sabores de la costa servidos en la bañera del velero, con agua, refrescos, cerveza y cava bien fríos.",
+  },
+  {
+    image: img("fondeo-cala.jpg"),
+    alt: "Velero fondeado en una cala para darse un baño",
+    title: "Baño en calas",
+    text: "Fondeamos en aguas tranquilas para que te des un chapuzón donde no llegan los coches: snorkel, saltos desde cubierta o simplemente flotar al sol.",
+  },
+  {
+    image: img("delfines.jpg"),
+    alt: "Delfines saltando junto al velero",
+    title: "Delfines en libertad",
+    text: "La Costa del Sol es zona de paso de delfines y es muy habitual que naveguen junto al barco. Verlos aparecer a tu lado es de esas cosas que no se olvidan.",
+    tag: "Muy habitual",
+  },
+  {
+    image: img("cubierta-proa.jpg"),
+    alt: "Grupo disfrutando a bordo del velero",
+    title: "Celebraciones a bordo",
+    text: "Cumpleaños, pedidas, despedidas o un plan de equipo diferente: decoramos la experiencia a tu medida y nos encargamos de todo. Tú solo brinda.",
+  },
+]
+
+/** Servicios incluidos en todas las salidas. (`highlight` lo resalta en la web.) */
 export const SERVICES: { icon: string; title: string; text: string; highlight?: boolean }[] = [
   {
     icon: "🅿️",
@@ -75,13 +155,13 @@ export const SERVICES: { icon: string; title: string; text: string; highlight?: 
   },
   {
     icon: "🍸",
-    title: "Cócteles a bordo",
-    text: "Mojitos, gin-tonics y cócteles recién preparados durante la travesía. Brinda frente al skyline de Marbella con una copa en la mano.",
+    title: "Cóctel de bienvenida",
+    text: "Subes a bordo y brindas: cóctel de bienvenida y barra con mojitos y gin-tonics recién preparados durante la travesía.",
   },
   {
     icon: "🍽️",
-    title: "Comida incluida",
-    text: "Picoteo mediterráneo y aperitivos frescos para disfrutar mientras navegas, sin coste añadido.",
+    title: "Picoteo mediterráneo",
+    text: "Degustación de producto fresco de la tierra para disfrutar mientras navegas, sin coste añadido.",
   },
   {
     icon: "🥂",
@@ -94,33 +174,33 @@ export const SERVICES: { icon: string; title: string; text: string; highlight?: 
     text: "Skipper titulado al mando: tú solo te dedicas a relajarte, bañarte y disfrutar del mar.",
   },
   {
-    icon: "📸",
-    title: "Planazo en el mar",
-    text: "Calas, baño, atardeceres y fotos de postal. Ideal para parejas, grupos de amigos, cumpleaños y celebraciones.",
+    icon: "🛟",
+    title: "Todo el equipo",
+    text: "Toallas, snorkel, chalecos y equipo de seguridad homologado a bordo. Solo trae bañador, crema y ganas de mar.",
   },
 ]
 
-/**
- * Galería — imágenes de marcador de posición (Unsplash).
- * 👉 Sustitúyelas por fotos reales del Sun Odyssey 42 CC.
- */
+/** Galería — fotos reales del barco y de nuestras salidas. */
 export const GALLERY: { src: string; alt: string }[] = [
-  { src: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80", alt: "Velero navegando al atardecer" },
-  { src: "https://images.unsplash.com/photo-1500514966906-fe245eea9344?auto=format&fit=crop&w=1200&q=80", alt: "Velero en mar abierto" },
-  { src: "https://images.unsplash.com/photo-1605281317010-fe5ffe798166?auto=format&fit=crop&w=1200&q=80", alt: "Cubierta de un velero" },
-  { src: "https://images.unsplash.com/photo-1559599238-308793637427?auto=format&fit=crop&w=1200&q=80", alt: "Barco amarrado en puerto deportivo" },
-  { src: "https://images.unsplash.com/photo-1469796466635-455ede028aca?auto=format&fit=crop&w=1200&q=80", alt: "Velero con velas desplegadas" },
-  { src: "https://images.unsplash.com/photo-1540946485063-a40da27545f8?auto=format&fit=crop&w=1200&q=80", alt: "Puerto deportivo al atardecer" },
+  { src: img("hero-navegando.jpg"), alt: "Navegando a bordo del Sun Odyssey 42 CC por la Costa del Sol" },
+  { src: img("atardecer.jpg"), alt: "Atardecer a vela frente a Marbella" },
+  { src: img("delfines.jpg"), alt: "Delfines saltando junto al velero" },
+  { src: img("fondeo-cala.jpg"), alt: "Velero fondeado en una cala para el baño" },
+  { src: img("proa-teca.jpg"), alt: "Cubierta de teca y proa del velero" },
+  { src: img("velero-sol.jpg"), alt: "El velero amarrado un día de sol" },
+  { src: img("cubierta-proa.jpg"), alt: "Vista de la cubierta desde proa" },
+  { src: img("vela.jpg"), alt: "La vela mayor izada contra el cielo azul" },
+  { src: img("marina.jpg"), alt: "El velero amarrado en el puerto deportivo" },
+  { src: img("cubierta-timon.jpg"), alt: "Bañera y rueda de timón del velero" },
+  { src: img("amarre-puerto.jpg"), alt: "El velero en su amarre" },
+  { src: img("velero-amarrado.jpg"), alt: "Detalle de cubierta y defensas en puerto" },
 ]
 
-/**
- * Cifras de confianza que se muestran bajo el hero.
- * 👉 Ajusta los números a tu realidad.
- */
+/** Cifras de confianza que se muestran bajo el hero. */
 export const STATS: { value: string; label: string }[] = [
   { value: "4,9★", label: "Valoración media" },
   { value: "+500", label: "Clientes a bordo" },
-  { value: "10", label: "Pasajeros máx." },
+  { value: "55 €", label: "Salida compartida" },
   { value: "100%", label: "Patrón incluido" },
 ]
 
@@ -131,17 +211,17 @@ export const STATS: { value: string; label: string }[] = [
 export const TESTIMONIALS: { name: string; text: string; origin: string }[] = [
   {
     name: "Laura G.",
-    text: "Un día inolvidable. El patrón super atento, los cócteles riquísimos y las vistas de Marbella desde el mar son otro nivel. Repetiremos seguro.",
+    text: "Un día inolvidable. El patrón super atento, los cócteles riquísimos y ver el atardecer desde el mar es otro nivel. Repetiremos seguro.",
     origin: "Madrid",
   },
   {
     name: "James W.",
-    text: "Perfect afternoon out of Puerto Banús. Everything was included and the free parking made it so easy. Highly recommended!",
+    text: "Perfect sunset trip out of Puerto Banús. Dolphins showed up next to the boat! Everything was included and the free parking made it so easy.",
     origin: "London",
   },
   {
     name: "Carlos & Marta",
-    text: "Lo reservamos para nuestro aniversario y fue un acierto total. Nos bañamos en una cala preciosa y volvimos al atardecer. 10 de 10.",
+    text: "Lo reservamos para nuestro aniversario y fue un acierto total. Nos bañamos en una cala preciosa, comimos de lujo y volvimos al atardecer. 10 de 10.",
     origin: "Sevilla",
   },
 ]

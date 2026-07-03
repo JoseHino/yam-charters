@@ -1,10 +1,11 @@
-# ⛵ Alquiler Jeanneau Sun Odyssey 42 CC · Puerto Banús
+# ⛵ Yam Charters · Experiencias a vela en Puerto Banús
 
-Web de reservas para el alquiler por horas del velero **Jeanneau Sun Odyssey 42 CC** en
-**Puerto Banús** (Marbella). Calcula el precio en tiempo real según la **temporada** y la
-**duración**, e integra pago con **PayPal**.
+Web de reservas de **Yam Charters**: experiencias a bordo de un **Jeanneau Sun Odyssey 42 CC**
+desde **Puerto Banús** (Marbella) — coctelería, degustación mediterránea, baño en calas,
+delfines y sunsets. Dos modalidades: **salida privada** (precio por horas y temporada, en
+tiempo real) y **salida compartida** (por plazas). Pago integrado con **PayPal**.
 
-> Servicios incluidos: **parking, comida y bebida**.
+> Incluido en todas las salidas: **patrón, cóctel de bienvenida, picoteo, bebida y parking gratis**.
 
 ## ✨ Características
 
@@ -18,15 +19,19 @@ Web de reservas para el alquiler por horas del velero **Jeanneau Sun Odyssey 42 
 - Secciones: galería, descripción y especificaciones, servicios, formulario de reserva y contacto.
 - **Diseño responsive** (móvil, tablet y escritorio).
 
-### Tabla de precios (IVA incluido)
+### Tabla de precios — salida privada (IVA incluido, −10% ya aplicado)
 
 | Duración | Temporada baja | Temporada alta |
 | -------- | -------------- | -------------- |
-| 2 h      | 481,50 €       | 540 €          |
-| 3 h      | 612 €          | 693 €          |
-| 4 h      | 756 €          | 846 €          |
-| 6 h      | 1.062 €        | 1.183,50 €     |
-| 8 h      | 1.350 €        | 1.530 €        |
+| 2 h      | 433,35 €       | 486 €          |
+| 3 h      | 550,80 €       | 623,70 €       |
+| 4 h      | 680,40 €       | 761,40 €       |
+| 6 h      | 955,80 €       | 1.065,15 €     |
+| 8 h      | 1.215 €        | 1.377 €        |
+
+### Salida compartida
+
+**55 € por persona** · ~3 horas · turnos de mañana y sunset · máx. 10 personas.
 
 ## 🧱 Stack
 

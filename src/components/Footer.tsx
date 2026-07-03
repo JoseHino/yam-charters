@@ -33,7 +33,7 @@ export default function Footer() {
         </p>
 
         <p className="mt-6 text-xs text-white/40">
-          © {new Date().getFullYear()} {BRAND.name} · Precios IVA incluido. Imágenes de muestra.
+          © {new Date().getFullYear()} {BRAND.name} · Precios IVA incluido · Salidas privadas y compartidas desde Puerto Banús.
         </p>
       </div>
     </footer>
