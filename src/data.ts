@@ -13,18 +13,11 @@ export const img = (file: string) => `${BASE}img/${file}`
 
 /**
  * Tabla de precios de SALIDA PRIVADA (IVA incluido), en euros,
- * por duración y temporada. Ya incluyen el 10% de descuento
- * sobre la tarifa anterior (ver PRICES_BEFORE).
+ * por duración y temporada.
  */
 export const PRICES: Record<Season, Record<Duration, number>> = {
   baja: { 2: 433.35, 3: 550.8, 4: 680.4, 6: 955.8, 8: 1215 },
   alta: { 2: 486, 3: 623.7, 4: 761.4, 6: 1065.15, 8: 1377 },
-}
-
-/** Tarifa anterior, para mostrarla tachada junto al precio rebajado. */
-export const PRICES_BEFORE: Record<Season, Record<Duration, number>> = {
-  baja: { 2: 481.5, 3: 612, 4: 756, 6: 1062, 8: 1350 },
-  alta: { 2: 540, 3: 693, 4: 846, 6: 1183.5, 8: 1530 },
 }
 
 export const DURATIONS: Duration[] = [2, 3, 4, 6, 8]
@@ -39,7 +32,7 @@ export const SHARED = {
     { id: "sunset", label: "Salida sunset", time: "Atardecer (según época)" },
   ],
   note:
-    "Grupo reducido (máx. 10 personas), patrón profesional, cóctel de bienvenida, picoteo mediterráneo y baño en una cala. Confirmamos la hora exacta al reservar.",
+    "Grupo reducido (máx. 10 personas), patrón profesional, cóctel de bienvenida, picoteo mediterráneo y parada para un baño en el mar. Confirmamos la hora exacta al reservar.",
 }
 
 /**
@@ -75,7 +68,7 @@ export const BRAND = {
 export const BOAT = {
   model: "Jeanneau Sun Odyssey 42 CC",
   tagline:
-    "Experiencias únicas a vela desde Puerto Banús: coctelería, sabores mediterráneos, calas, delfines y atardeceres que no se olvidan.",
+    "Experiencias únicas a vela desde Puerto Banús: coctelería, sabores mediterráneos, baños en el mar, delfines y atardeceres que no se olvidan.",
   location: "Puerto Banús · Marbella",
   intro:
     "El escenario de tu experiencia es un Jeanneau Sun Odyssey 42 CC: un velero de casi 13 metros, elegante, estable y con cubierta de teca, pensado para disfrutar del mar con todas las comodidades. Amplia bañera para compartir mesa y cócteles, solárium en proa, 3 camarotes y 2 aseos. Sale del corazón de Puerto Banús con patrón profesional y parking gratuito junto al puerto.",
@@ -106,29 +99,29 @@ export const EXPERIENCES: {
   tag?: string
 }[] = [
   {
-    image: img("atardecer.jpg"),
-    alt: "Silueta del velero al atardecer frente a la Costa del Sol",
-    title: "Sunset a vela",
-    text: "La hora dorada vista desde el mar: el sol cayendo tras La Concha, una copa fría en la mano y Marbella encendiéndose a lo lejos. Nuestra salida más pedida.",
+    image: img("sunset-mar.jpg"),
+    alt: "El sol poniéndose sobre el mar",
+    title: "Salida sunset",
+    text: "La hora dorada vista desde el mar: el sol cayendo sobre el horizonte, una copa fría en la mano y Marbella encendiéndose a lo lejos. Nuestra salida más pedida.",
     tag: "La favorita",
   },
   {
-    image: img("relax-a-bordo.jpg"),
-    alt: "Invitados relajándose en la cubierta del velero",
+    image: img("mojitos.jpg"),
+    alt: "Mojito recién preparado con lima y hierbabuena",
     title: "Coctelería a bordo",
     text: "Mojitos, spritz y gin-tonics preparados al momento mientras navegas. Cóctel de bienvenida incluido y barra a bordo durante toda la travesía.",
   },
   {
-    image: img("cockpit.jpg"),
-    alt: "Bañera del velero con mesa para comer a bordo",
+    image: img("paella.jpg"),
+    alt: "Paella de marisco con gambas y mejillones",
     title: "Degustación mediterránea",
-    text: "Picoteo fresco de la tierra: ibéricos, quesos, fruta y sabores de la costa servidos en la bañera del velero, con agua, refrescos, cerveza y cava bien fríos.",
+    text: "Sabores frescos de la costa: paella, gambas, ibéricos y fruta servidos en la bañera del velero, con agua, refrescos, cerveza y cava bien fríos.",
   },
   {
     image: img("fondeo-cala.jpg"),
-    alt: "Velero fondeado en una cala para darse un baño",
-    title: "Baño en calas",
-    text: "Fondeamos en aguas tranquilas para que te des un chapuzón donde no llegan los coches: snorkel, saltos desde cubierta o simplemente flotar al sol.",
+    alt: "Velero fondeado en aguas tranquilas para darse un baño",
+    title: "Baño en el mar",
+    text: "Fondeamos frente a la costa en aguas tranquilas para que te des un chapuzón donde no llega nadie más: snorkel, saltos desde cubierta o simplemente flotar al sol.",
   },
   {
     image: img("delfines.jpg"),
@@ -183,9 +176,10 @@ export const SERVICES: { icon: string; title: string; text: string; highlight?: 
 /** Galería — fotos reales del barco y de nuestras salidas. */
 export const GALLERY: { src: string; alt: string }[] = [
   { src: img("hero-navegando.jpg"), alt: "Navegando a bordo del Sun Odyssey 42 CC por la Costa del Sol" },
+  { src: img("puerto-banus.jpg"), alt: "Puerto Banús, nuestro puerto base" },
   { src: img("atardecer.jpg"), alt: "Atardecer a vela frente a Marbella" },
   { src: img("delfines.jpg"), alt: "Delfines saltando junto al velero" },
-  { src: img("fondeo-cala.jpg"), alt: "Velero fondeado en una cala para el baño" },
+  { src: img("fondeo-cala.jpg"), alt: "Velero fondeado en aguas tranquilas para el baño" },
   { src: img("proa-teca.jpg"), alt: "Cubierta de teca y proa del velero" },
   { src: img("velero-sol.jpg"), alt: "El velero amarrado un día de sol" },
   { src: img("cubierta-proa.jpg"), alt: "Vista de la cubierta desde proa" },
@@ -221,7 +215,7 @@ export const TESTIMONIALS: { name: string; text: string; origin: string }[] = [
   },
   {
     name: "Carlos & Marta",
-    text: "Lo reservamos para nuestro aniversario y fue un acierto total. Nos bañamos en una cala preciosa, comimos de lujo y volvimos al atardecer. 10 de 10.",
+    text: "Lo reservamos para nuestro aniversario y fue un acierto total. Nos dimos un baño en mitad del mar, comimos de lujo y volvimos al atardecer. 10 de 10.",
     origin: "Sevilla",
   },
 ]

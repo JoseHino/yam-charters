@@ -13,7 +13,7 @@ export default function Experiences() {
         <Reveal className="mx-auto -mt-6 mb-10 max-w-2xl text-center text-slate-600">
           <p>
             Cada travesía es una experiencia completa: coctelería, sabores
-            mediterráneos, calas de agua tranquila y atardeceres desde el mar.
+            mediterráneos, baños en el mar y atardeceres desde el barco.
             Elige salida privada para tu grupo o únete a una salida compartida
             desde {eur(SHARED.pricePerPerson).replace(",00", "")} por persona.
           </p>
@@ -55,9 +55,8 @@ export default function Experiences() {
                 Todas las experiencias, en cualquier salida
               </p>
               <p className="mt-1 text-sm text-white/70">
-                Privada desde 2 horas (ahora con un 10% de descuento) o
-                compartida por {eur(SHARED.pricePerPerson).replace(",00", "")}{" "}
-                por persona.
+                Barco completo desde 2 horas o salida compartida por{" "}
+                {eur(SHARED.pricePerPerson).replace(",00", "")} por persona.
               </p>
             </div>
             <a

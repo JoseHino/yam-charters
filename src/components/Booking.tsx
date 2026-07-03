@@ -3,7 +3,6 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js"
 import Reveal from "./Reveal"
 import {
   PRICES,
-  PRICES_BEFORE,
   DURATIONS,
   SHARED,
   seasonForDate,
@@ -51,7 +50,6 @@ export default function Booking() {
   const season = useMemo(() => seasonForDate(parseLocal(date)), [date])
   const isShared = mode === "compartida"
   const total = isShared ? SHARED.pricePerPerson * pax : PRICES[season][duration]
-  const totalBefore = isShared ? null : PRICES_BEFORE[season][duration]
 
   const slotInfo = SHARED.slots.find((s) => s.id === slot) ?? SHARED.slots[0]
 
@@ -121,7 +119,7 @@ export default function Booking() {
               onClick={() => setMode("privada")}
               title="Salida privada"
               subtitle="El barco entero para vosotros"
-              badge="−10% aplicado"
+              badge="Hasta 10 pers."
               price={`desde ${eur(PRICES.baja[2]).replace(/,\d\d/, "")}`}
             />
             <ModeCard
@@ -214,10 +212,7 @@ export default function Booking() {
                       }
                     >
                       <span className="block text-lg font-bold">{d}h</span>
-                      <span className="block text-[10px] line-through opacity-60">
-                        {eur(PRICES_BEFORE[season][d]).replace(",00", "")}
-                      </span>
-                      <span className="block text-[11px] font-semibold">
+                      <span className="block text-[11px] opacity-80">
                         {eur(PRICES[season][d]).replace(",00", "")}
                       </span>
                     </button>
@@ -300,14 +295,7 @@ export default function Booking() {
 
               <div className="mt-4 flex items-end justify-between border-t border-white/15 pt-4">
                 <span className="text-white/70">Total (IVA incl.)</span>
-                <span className="text-right">
-                  {totalBefore && (
-                    <span className="block text-sm text-white/50 line-through">
-                      {eur(totalBefore)}
-                    </span>
-                  )}
-                  <span className="text-3xl font-bold text-gold">{eur(total)}</span>
-                </span>
+                <span className="text-3xl font-bold text-gold">{eur(total)}</span>
               </div>
 
               {paid ? (

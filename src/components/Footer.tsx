@@ -35,6 +35,17 @@ export default function Footer() {
         <p className="mt-6 text-xs text-white/40">
           © {new Date().getFullYear()} {BRAND.name} · Precios IVA incluido · Salidas privadas y compartidas desde Puerto Banús.
         </p>
+        <p className="mt-2 text-[11px] text-white/30">
+          Foto de Puerto Banús:{" "}
+          <a
+            href="https://commons.wikimedia.org/wiki/File:Puerto_Banus_Marina,_Marbella_-_Spain.jpg"
+            target="_blank"
+            rel="noopener"
+            className="underline hover:text-white/60"
+          >
+            Judas6000, Wikimedia Commons (CC BY-SA 3.0)
+          </a>
+        </p>
       </div>
     </footer>
   )

@@ -1,7 +1,7 @@
 # ⛵ Yam Charters · Experiencias a vela en Puerto Banús
 
 Web de reservas de **Yam Charters**: experiencias a bordo de un **Jeanneau Sun Odyssey 42 CC**
-desde **Puerto Banús** (Marbella) — coctelería, degustación mediterránea, baño en calas,
+desde **Puerto Banús** (Marbella) — coctelería, degustación mediterránea, baños en el mar,
 delfines y sunsets. Dos modalidades: **salida privada** (precio por horas y temporada, en
 tiempo real) y **salida compartida** (por plazas). Pago integrado con **PayPal**.
 
@@ -19,7 +19,7 @@ tiempo real) y **salida compartida** (por plazas). Pago integrado con **PayPal**
 - Secciones: galería, descripción y especificaciones, servicios, formulario de reserva y contacto.
 - **Diseño responsive** (móvil, tablet y escritorio).
 
-### Tabla de precios — salida privada (IVA incluido, −10% ya aplicado)
+### Tabla de precios — salida privada (IVA incluido)
 
 | Duración | Temporada baja | Temporada alta |
 | -------- | -------------- | -------------- |

@@ -36,7 +36,7 @@ export default function Hero() {
             🌅 Compartida desde {eur(SHARED.pricePerPerson).replace(",00", "")}/persona
           </span>
           <span className="rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 backdrop-blur-sm">
-            🔒 Privada con −10%
+            ⚓ Patrón incluido
           </span>
           <span className="rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 backdrop-blur-sm">
             🅿️ Parking gratis
