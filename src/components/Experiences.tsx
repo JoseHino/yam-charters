@@ -32,7 +32,7 @@ export default function Experiences() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   {e.tag && (
-                    <span className="dusk-gradient logmark absolute right-3 top-3 rounded-full px-2.5 py-1 text-ink">
+                    <span className="logmark absolute right-3 top-3 rounded-full border border-dawn/60 px-2.5 py-1 text-dawn">
                       {e.tag}
                     </span>
                   )}
@@ -60,7 +60,7 @@ export default function Experiences() {
             </div>
             <a
               href="#reservar"
-              className="dusk-gradient shrink-0 rounded-full px-7 py-3 font-semibold text-ink transition hover:brightness-105"
+              className="shrink-0 rounded-full bg-gold px-7 py-3 font-semibold text-ink transition hover:bg-dawn"
             >
               Elegir mi experiencia
             </a>

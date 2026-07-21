@@ -23,7 +23,7 @@ export default function Services() {
                   <span className="logmark text-sand/35">{String(i + 1).padStart(2, "0")}</span>
                 </div>
                 {s.highlight && (
-                  <span className="dusk-gradient logmark mt-3 w-fit rounded-full px-2.5 py-0.5 text-ink">
+                  <span className="logmark mt-3 w-fit rounded-full bg-gold px-2.5 py-0.5 text-ink">
                     Gratis
                   </span>
                 )}

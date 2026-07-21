@@ -50,7 +50,7 @@ export default function Nav() {
           ))}
           <a
             href="#reservar"
-            className="dusk-gradient rounded-full px-5 py-2 text-sm font-semibold text-ink transition hover:brightness-105"
+            className="rounded-full bg-gold px-5 py-2 text-sm font-semibold text-ink transition hover:bg-dawn"
           >
             Reservar
           </a>
@@ -81,7 +81,7 @@ export default function Nav() {
           <a
             href="#reservar"
             onClick={() => setOpen(false)}
-            className="dusk-gradient mt-2 block rounded-full px-4 py-2 text-center font-semibold text-ink"
+            className="mt-2 block rounded-full bg-gold px-4 py-2 text-center font-semibold text-ink"
           >
             Reservar
           </a>
