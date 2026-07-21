@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react"
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js"
 import Reveal from "./Reveal"
+import Icon from "./Icon"
 import {
   PRICES,
   DURATIONS,
@@ -299,8 +300,9 @@ export default function Booking() {
               </div>
 
               {paid ? (
-                <div className="mt-5 rounded-xl bg-emerald-500/20 p-4 text-center text-emerald-100">
-                  ✅ ¡Pago recibido! Te contactaremos para confirmar los detalles.
+                <div className="mt-5 flex items-center justify-center gap-2 rounded-xl bg-emerald-500/20 p-4 text-center text-emerald-100">
+                  <Icon name="check" className="h-5 w-5" strokeWidth={2.5} />
+                  ¡Pago recibido! Te contactaremos para confirmar los detalles.
                 </div>
               ) : (
                 <div className="mt-5">

@@ -29,11 +29,11 @@ export default function Gallery() {
   }, [active, close, go])
 
   return (
-    <section id="galeria" className="mx-auto max-w-6xl px-4 py-24 sm:py-28">
-      <SectionTitle kicker="Cuaderno de a bordo" title="Así se vive la travesía" index="02" />
+    <section id="galeria" className="mx-auto max-w-6xl px-4 py-20 sm:px-8 sm:py-24">
+      <SectionTitle kicker="Galería" title="Así se vive a bordo" />
 
       {/* Rejilla tipo bento: la primera imagen ocupa el doble */}
-      <div className="grid grid-cols-2 gap-2.5 md:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
         {GALLERY.map((img, i) => (
           <Reveal
             key={img.src}
@@ -43,7 +43,7 @@ export default function Gallery() {
             <button
               onClick={() => setActive(i)}
               className={
-                "group relative w-full cursor-pointer overflow-hidden rounded-sm " +
+                "group relative w-full cursor-pointer overflow-hidden rounded-xl " +
                 (i === 0 ? "aspect-square md:h-full" : "aspect-[4/3]")
               }
             >
@@ -53,10 +53,7 @@ export default function Gallery() {
                 loading="lazy"
                 className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
               />
-              <span className="absolute inset-0 bg-gradient-to-t from-navy/70 via-navy/5 to-transparent opacity-0 transition group-hover:opacity-100" />
-              <span className="logmark absolute bottom-3 left-3 translate-y-1 text-sand opacity-0 transition group-hover:translate-y-0 group-hover:opacity-100">
-                {String(i + 1).padStart(2, "0")} · ampliar
-              </span>
+              <span className="absolute inset-0 bg-navy/0 transition group-hover:bg-navy/25" />
             </button>
           </Reveal>
         ))}
@@ -117,29 +114,19 @@ export default function Gallery() {
 export function SectionTitle({
   kicker,
   title,
-  index,
   onDark = false,
 }: {
   kicker: string
   title: string
-  index?: string
   onDark?: boolean
 }) {
   return (
-    <Reveal className="mb-12">
-      <p className={"logmark " + (onDark ? "text-dawn" : "text-gold")}>
-        {index && <span className="opacity-60">{index} — </span>}
-        {kicker}
-      </p>
-      <h2
-        className={
-          "mt-3 max-w-2xl text-[2.4rem] leading-[0.98] sm:text-5xl " +
-          (onDark ? "text-sand" : "text-navy")
-        }
-      >
+    <Reveal className="mb-12 text-center">
+      <p className="eyebrow">{kicker}</p>
+      <h2 className={"mt-3 text-3xl font-bold sm:text-4xl " + (onDark ? "text-white" : "text-navy")}>
         {title}
       </h2>
-      <div className={"horizon mt-6 " + (onDark ? "text-sand/40" : "text-navy/30")} />
+      <span className="mx-auto mt-4 block h-1 w-12 rounded-full bg-sea" />
     </Reveal>
   )
 }

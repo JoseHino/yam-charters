@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react"
 import { BRAND } from "../data"
 
-const COORDS = "36°29′N · 4°57′O"
-
 const LINKS = [
-  ["#experiencias", "La travesía"],
-  ["#galeria", "Cuaderno"],
+  ["#experiencias", "Experiencias"],
+  ["#galeria", "Galería"],
   ["#barco", "El barco"],
-  ["#servicios", "A bordo"],
+  ["#servicios", "Incluido"],
   ["#opiniones", "Opiniones"],
   ["#contacto", "Contacto"],
 ]
@@ -23,19 +21,21 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
+  const solid = scrolled || open
+
   return (
     <header
       className={
-        "fixed top-0 z-50 w-full text-sand transition-all duration-300 " +
-        (scrolled || open
-          ? "bg-ink/95 shadow-lg shadow-black/20 backdrop-blur"
-          : "bg-gradient-to-b from-ink/70 to-transparent")
+        "fixed top-0 z-50 w-full transition-all duration-300 " +
+        (solid ? "bg-white/95 shadow-sm backdrop-blur" : "bg-transparent")
       }
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-8">
-        <a href="#inicio" className="flex items-baseline gap-2.5">
-          <span className="font-display text-2xl leading-none">{BRAND.name}</span>
-          <span className="logmark hidden text-sand/50 sm:block">{COORDS}</span>
+        <a
+          href="#inicio"
+          className={"font-display text-xl font-extrabold tracking-tight " + (solid ? "text-navy" : "text-white")}
+        >
+          {BRAND.name}
         </a>
 
         <nav className="hidden items-center gap-7 md:flex">
@@ -43,21 +43,24 @@ export default function Nav() {
             <a
               key={href}
               href={href}
-              className="text-sm text-sand/75 transition hover:text-dawn"
+              className={
+                "text-sm font-medium transition hover:text-sea " +
+                (solid ? "text-navy/80" : "text-white/90")
+              }
             >
               {label}
             </a>
           ))}
           <a
             href="#reservar"
-            className="rounded-full bg-gold px-5 py-2 text-sm font-semibold text-ink transition hover:bg-dawn"
+            className="rounded-lg bg-sea px-5 py-2 text-sm font-semibold text-white transition hover:bg-sky"
           >
             Reservar
           </a>
         </nav>
 
         <button
-          className="text-2xl md:hidden"
+          className={"text-2xl md:hidden " + (solid ? "text-navy" : "text-white")}
           aria-label="Abrir menú"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
@@ -67,13 +70,13 @@ export default function Nav() {
       </div>
 
       {open && (
-        <nav className="border-t border-sand/10 bg-ink px-4 py-3 md:hidden">
+        <nav className="border-t border-slate-100 bg-white px-4 py-3 md:hidden">
           {LINKS.map(([href, label]) => (
             <a
               key={href}
               href={href}
               onClick={() => setOpen(false)}
-              className="block py-2 text-sand/85"
+              className="block py-2 font-medium text-navy/85"
             >
               {label}
             </a>
@@ -81,7 +84,7 @@ export default function Nav() {
           <a
             href="#reservar"
             onClick={() => setOpen(false)}
-            className="mt-2 block rounded-full bg-gold px-4 py-2 text-center font-semibold text-ink"
+            className="mt-2 block rounded-lg bg-sea px-4 py-2 text-center font-semibold text-white"
           >
             Reservar
           </a>

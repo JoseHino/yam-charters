@@ -1,29 +1,23 @@
 @import "tailwindcss";
 
 /* ====================================================================
-   Bitácora del atardecer — sistema de diseño
-   Paleta: crepúsculo mediterráneo (mar petróleo · lienzo de vela ·
-   degradado de sunset coral→albaricoque→rosa) + latón.
-   Tipografía: Instrument Serif (display) · Archivo (texto) · Space Mono (datos).
-   Los nombres de token se conservan (navy/sea/sand/gold) para re-vestir
-   automáticamente los componentes existentes; cambian sus VALORES.
+   Náutico limpio — sistema de diseño
+   Claro y luminoso, azul mar como color de marca, sans profesional.
+   Tipografía: Montserrat (titulares) + Mulish (texto).
+   Se conservan los NOMBRES de token (navy/sea/sand/gold) para re-vestir
+   los componentes existentes; cambian sus VALORES.
    ==================================================================== */
 @theme {
-  --color-navy: #08272e;      /* mar petróleo al anochecer (fondo oscuro) */
-  --color-navy-700: #0e3a42;  /* superficie oscura elevada */
-  --color-sea: #3a8c86;       /* jade / turquesa marino (secundario) */
-  --color-sand: #ece5d3;      /* lienzo de vela (fondo claro) */
-  --color-gold: #e8663b;      /* SOL coral — acento principal */
+  --color-navy: #0c2b46;      /* azul marino profundo — texto y secciones oscuras */
+  --color-navy-700: #13456b;  /* azul medio */
+  --color-sea: #0e7ea9;       /* AZUL OCÉANO — color de marca (CTA, enlaces) */
+  --color-sky: #38b6e6;       /* cian claro — secundario / hover */
+  --color-sand: #f2f6f8;      /* gris muy claro con toque de mar — fondos alternos */
+  --color-gold: #e08a3c;      /* ámbar — acento discreto, uso puntual */
+  --color-ink: #0a2338;       /* azul casi negro — pie */
 
-  /* tokens del degradado de atardecer (la firma) */
-  --color-dawn: #f4a15c;      /* albaricoque */
-  --color-rose: #c8436b;      /* rosa dusk */
-  --color-brass: #b8894a;     /* latón / teca barnizada */
-  --color-ink: #071e24;       /* tinta de bitácora */
-
-  --font-sans: "Archivo", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
-  --font-mono: "Space Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-sans: "Mulish", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Montserrat", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
 }
 
 html {
@@ -31,114 +25,70 @@ html {
   scroll-padding-top: 76px;
 }
 
-body {
-  margin: 0;
-  font-family: var(--font-sans);
-  background: var(--color-sand);
-  color: #1a2c30;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Reglas base EN @layer para que las utilidades de Tailwind (text-white, etc.)
+   siempre puedan sobreescribirlas. */
+@layer base {
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    background: #ffffff;
+    color: #223541;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--color-navy);
+  }
+  ::selection { background: var(--color-sea); color: #fff; }
 }
 
-/* Titulares: display serif de alto contraste, grande y con aire */
-h1, h2, h3, .font-display {
-  font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: -0.005em;
-  line-height: 1.02;
-}
+@layer components {
+  .font-display { font-family: var(--font-display); }
 
-/* Etiqueta de bitácora: mono, versalitas, tracking amplio */
-.logmark {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-}
+  /* Epígrafe de sección: sans, versalitas, azul de marca */
+  .eyebrow {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-sea);
+  }
 
-::selection {
-  background: var(--color-gold);
-  color: #fff;
-}
-
-/* Coordenadas del amarre — motivo recurrente */
-.coords { font-family: var(--font-mono); letter-spacing: 0.08em; }
-
-/* Degradado de atardecer reutilizable */
-.dusk-gradient {
-  background: linear-gradient(100deg, var(--color-rose) 0%, var(--color-gold) 45%, var(--color-dawn) 100%);
-}
-.dusk-text {
-  background: linear-gradient(100deg, var(--color-rose), var(--color-gold) 55%, var(--color-dawn));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Regla de horizonte: fina línea con un "sol" a la izquierda */
-.horizon {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-.horizon::before {
-  content: "";
-  width: 0.5rem; height: 0.5rem; border-radius: 999px;
-  background: var(--color-gold);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-gold) 22%, transparent);
-  flex: none;
-}
-.horizon::after {
-  content: "";
-  height: 1px; flex: 1;
-  background: linear-gradient(to right, color-mix(in srgb, currentColor 45%, transparent), transparent);
-}
-
-/* Trama de carta náutica (rejilla suave) para fondos claros */
-.chartgrid {
-  background-image:
-    linear-gradient(color-mix(in srgb, var(--color-navy) 6%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--color-navy) 6%, transparent) 1px, transparent 1px);
-  background-size: 44px 44px;
-}
-
-/* Campo de formulario (usado por Booking) */
-.input {
-  width: 100%;
-  border-radius: 0.5rem;
-  border: 1px solid #cfd8d2;
-  background: #fff;
-  padding: 0.625rem 0.75rem;
-  font-size: 0.95rem;
-  font-family: var(--font-sans);
-  color: #1a2c30;
-  outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
-}
-.input:focus {
-  border-color: var(--color-gold);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-gold) 18%, transparent);
+  /* Campo de formulario (usado por Booking) */
+  .input {
+    width: 100%;
+    border-radius: 0.6rem;
+    border: 1px solid #d3dde3;
+    background: #fff;
+    padding: 0.65rem 0.8rem;
+    font-size: 0.95rem;
+    font-family: var(--font-sans);
+    color: #223541;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .input:focus {
+    border-color: var(--color-sea);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-sea) 18%, transparent);
+  }
 }
 
 /* ---------- Animaciones ---------- */
 .reveal {
   opacity: 0;
-  transform: translateY(26px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 .reveal.is-visible { opacity: 1; transform: none; }
 
-@keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.12); } }
+@keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.1); } }
 .animate-kenburns { animation: kenburns 20s ease-out forwards; }
-
-/* El sol asciende y crece levemente al cargar el hero */
-@keyframes sunrise {
-  from { transform: translateY(24px) scale(0.9); opacity: 0; }
-  to { transform: translateY(0) scale(1); opacity: 1; }
-}
-.animate-sunrise { animation: sunrise 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
 @keyframes softpulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45); }
@@ -147,13 +97,13 @@ h1, h2, h3, .font-display {
 .animate-softpulse { animation: softpulse 2.4s ease-out infinite; }
 
 @keyframes bobbing {
-  0%, 100% { transform: translateY(0); opacity: 0.65; }
-  50% { transform: translateY(8px); opacity: 1; }
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(7px); opacity: 1; }
 }
 .animate-bobbing { animation: bobbing 1.8s ease-in-out infinite; }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
-  .animate-kenburns, .animate-softpulse, .animate-bobbing, .animate-sunrise { animation: none; }
+  .animate-kenburns, .animate-softpulse, .animate-bobbing { animation: none; }
   html { scroll-behavior: auto; }
 }

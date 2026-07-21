@@ -141,33 +141,33 @@ export const EXPERIENCES: {
 /** Servicios incluidos en todas las salidas. (`highlight` lo resalta en la web.) */
 export const SERVICES: { icon: string; title: string; text: string; highlight?: boolean }[] = [
   {
-    icon: "🅿️",
-    title: "Parking GRATUITO",
+    icon: "parking",
+    title: "Parking gratuito",
     text: "Aparca gratis en el Parking Cristamar, a solo 5 minutos andando del barco. Olvídate del problema de aparcar en Puerto Banús: llegas, dejas el coche y un corto paseo te lleva al amarre.",
     highlight: true,
   },
   {
-    icon: "🍸",
+    icon: "cocktail",
     title: "Cóctel de bienvenida",
     text: "Subes a bordo y brindas: cóctel de bienvenida y barra con mojitos y gin-tonics recién preparados durante la travesía.",
   },
   {
-    icon: "🍽️",
+    icon: "food",
     title: "Picoteo mediterráneo",
     text: "Degustación de producto fresco de la tierra para disfrutar mientras navegas, sin coste añadido.",
   },
   {
-    icon: "🥂",
+    icon: "drinks",
     title: "Bebida incluida",
     text: "Agua, refrescos, cerveza y cava bien fríos durante toda la salida. Barra libre de buenos momentos.",
   },
   {
-    icon: "⚓",
+    icon: "anchor",
     title: "Patrón profesional",
     text: "Skipper titulado al mando: tú solo te dedicas a relajarte, bañarte y disfrutar del mar.",
   },
   {
-    icon: "🛟",
+    icon: "safety",
     title: "Todo el equipo",
     text: "Toallas, snorkel, chalecos y equipo de seguridad homologado a bordo. Solo trae bañador, crema y ganas de mar.",
   },
