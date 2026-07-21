@@ -1,10 +1,12 @@
 import { BOAT, BRAND, STATS, SHARED, eur, img } from "../data"
 
+const COORDS = "36°29′06″N · 4°57′04″O"
+
 export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative flex min-h-[92vh] items-center justify-center overflow-hidden text-white"
+      className="relative flex min-h-[94vh] items-end overflow-hidden text-sand"
     >
       {/* Foto real navegando, con zoom lento */}
       <img
@@ -13,71 +15,81 @@ export default function Hero() {
         fetchPriority="high"
         className="animate-kenburns absolute inset-0 h-full w-full object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-navy/75 via-navy/50 to-navy/95" />
-      {/* Viñeteado sutil para dar profundidad */}
-      <div className="pointer-events-none absolute inset-0 [box-shadow:inset_0_0_180px_60px_rgba(7,20,33,0.55)]" />
+      {/* Graduado a crepúsculo: tinte de atardecer arriba + tinta de mar abajo */}
+      <div className="absolute inset-0 bg-gradient-to-b from-rose/25 via-navy/45 to-ink/95" />
+      <div className="absolute inset-0 bg-gradient-to-tr from-navy/70 via-transparent to-transparent" />
 
-      <div className="relative mx-auto max-w-3xl px-6 text-center">
-        <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] backdrop-blur-sm">
-          <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-          {BRAND.name} · {BOAT.location}
+      {/* El sol de coral ascendiendo sobre el horizonte (elemento firma) */}
+      <div
+        aria-hidden
+        className="animate-sunrise pointer-events-none absolute right-[8%] top-[22%] h-40 w-40 rounded-full sm:h-56 sm:w-56"
+        style={{
+          background:
+            "radial-gradient(circle at 50% 50%, #ffd9a0 0%, #f4a15c 38%, #e8663b 62%, rgba(232,102,59,0) 72%)",
+        }}
+      />
+
+      {/* Marca de bitácora, arriba */}
+      <p className="logmark absolute left-4 top-24 text-sand/80 sm:left-8">
+        <span className="text-dawn">✶ Bitácora</span> · {COORDS}
+      </p>
+
+      <div className="relative mx-auto w-full max-w-6xl px-4 pb-16 sm:px-8 sm:pb-20">
+        <p className="logmark text-dawn">
+          {BRAND.name} — {BOAT.location}
         </p>
 
-        <h1 className="text-4xl font-semibold leading-[1.08] drop-shadow-sm sm:text-5xl md:text-[3.5rem]">
+        <h1 className="mt-4 max-w-3xl text-[3rem] leading-[0.94] sm:text-7xl md:text-[5.2rem]">
           {BRAND.claim}
         </h1>
 
-        <p className="mx-auto mt-5 max-w-xl text-lg font-light text-white/90">
+        <p className="mt-6 max-w-xl text-lg font-light leading-relaxed text-sand/85">
           {BOAT.tagline}
         </p>
 
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-sm">
-          <span className="rounded-full bg-gold px-3.5 py-1.5 font-semibold text-navy shadow-sm">
-            🌅 Compartida desde {eur(SHARED.pricePerPerson).replace(",00", "")}/persona
+        {/* Datos de salida en clave de instrumento */}
+        <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-sand/85">
+          <span className="coords text-sm">
+            <span className="text-dawn">◐</span> Compartida {eur(SHARED.pricePerPerson).replace(",00", "")}/pax
           </span>
-          <span className="rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 backdrop-blur-sm">
-            ⚓ Patrón incluido
-          </span>
-          <span className="rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 backdrop-blur-sm">
-            🅿️ Parking gratis
-          </span>
+          <span className="coords text-sm"><span className="text-dawn">⚓</span> Patrón incluido</span>
+          <span className="coords text-sm"><span className="text-dawn">🅿</span> Parking gratis</span>
         </div>
 
-        <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+        <div className="mt-9 flex flex-wrap items-center gap-3">
           <a
             href="#reservar"
-            className="rounded-full bg-gold px-8 py-3.5 font-semibold text-navy shadow-lg shadow-gold/20 transition hover:scale-[1.03] hover:brightness-110"
+            className="dusk-gradient rounded-full px-8 py-3.5 font-semibold text-ink shadow-lg shadow-gold/25 transition hover:brightness-105"
           >
-            Reservar ahora
+            Reservar travesía
           </a>
           <a
             href="#experiencias"
-            className="rounded-full border border-white/40 px-8 py-3.5 font-semibold text-white backdrop-blur-sm transition hover:bg-white/10"
+            className="rounded-full border border-sand/40 px-8 py-3.5 font-medium text-sand backdrop-blur-sm transition hover:bg-sand/10"
           >
-            Ver experiencias
+            Ver la travesía
           </a>
         </div>
 
-        {/* Barra de confianza */}
-        <div className="mx-auto mt-12 grid max-w-2xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/15 bg-white/10 backdrop-blur-md sm:grid-cols-4">
+        {/* Regla de horizonte + lecturas del cuaderno */}
+        <div className="horizon mt-12 text-sand/30" />
+        <dl className="mt-6 grid max-w-3xl grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-4">
           {STATS.map((s) => (
-            <div key={s.label} className="px-4 py-4">
-              <div className="font-display text-2xl font-semibold text-gold">{s.value}</div>
-              <div className="mt-0.5 text-[11px] uppercase tracking-wide text-white/70">
-                {s.label}
-              </div>
+            <div key={s.label}>
+              <dt className="font-display text-3xl text-dawn">{s.value}</dt>
+              <dd className="logmark mt-1 text-sand/60">{s.label}</dd>
             </div>
           ))}
-        </div>
+        </dl>
       </div>
 
       {/* Indicador de scroll */}
       <a
         href="#experiencias"
         aria-label="Desplázate para ver más"
-        className="animate-bobbing absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 hover:text-white"
+        className="animate-bobbing absolute bottom-5 left-1/2 -translate-x-1/2 text-sand/60 hover:text-sand"
       >
-        <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.5">
           <path strokeLinecap="round" strokeLinejoin="round" d="m6 9 6 6 6-6" />
         </svg>
       </a>

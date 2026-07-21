@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react"
-import { BRAND, BOAT } from "../data"
+import { BRAND } from "../data"
+
+const COORDS = "36°29′N · 4°57′O"
 
 const LINKS = [
-  ["#experiencias", "Experiencias"],
-  ["#galeria", "Galería"],
+  ["#experiencias", "La travesía"],
+  ["#galeria", "Cuaderno"],
   ["#barco", "El barco"],
-  ["#servicios", "Incluido"],
+  ["#servicios", "A bordo"],
   ["#opiniones", "Opiniones"],
   ["#contacto", "Contacto"],
 ]
@@ -24,55 +26,54 @@ export default function Nav() {
   return (
     <header
       className={
-        "fixed top-0 z-50 w-full text-white transition-all duration-300 " +
+        "fixed top-0 z-50 w-full text-sand transition-all duration-300 " +
         (scrolled || open
-          ? "bg-navy/95 shadow-lg backdrop-blur"
-          : "bg-gradient-to-b from-navy/60 to-transparent")
+          ? "bg-ink/95 shadow-lg shadow-black/20 backdrop-blur"
+          : "bg-gradient-to-b from-ink/70 to-transparent")
       }
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <a href="#inicio" className="flex items-center gap-2 tracking-tight">
-          <span className="text-xl">⛵</span>
-          <span className="leading-tight">
-            <span className="font-display text-lg font-semibold">{BRAND.name}</span>
-            <span className="block text-[11px] font-normal text-white/60">
-              {BOAT.model} · {BOAT.location}
-            </span>
-          </span>
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-8">
+        <a href="#inicio" className="flex items-baseline gap-2.5">
+          <span className="font-display text-2xl leading-none">{BRAND.name}</span>
+          <span className="logmark hidden text-sand/50 sm:block">{COORDS}</span>
         </a>
 
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-7 md:flex">
           {LINKS.map(([href, label]) => (
-            <a key={href} href={href} className="text-sm text-white/80 transition hover:text-white">
+            <a
+              key={href}
+              href={href}
+              className="text-sm text-sand/75 transition hover:text-dawn"
+            >
               {label}
             </a>
           ))}
           <a
             href="#reservar"
-            className="rounded-full bg-gold px-4 py-2 text-sm font-semibold text-navy transition hover:scale-105 hover:brightness-110"
+            className="dusk-gradient rounded-full px-5 py-2 text-sm font-semibold text-ink transition hover:brightness-105"
           >
             Reservar
           </a>
         </nav>
 
         <button
-          className="md:hidden"
+          className="text-2xl md:hidden"
           aria-label="Abrir menú"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >
-          <span className="text-2xl">{open ? "✕" : "☰"}</span>
+          {open ? "✕" : "☰"}
         </button>
       </div>
 
       {open && (
-        <nav className="border-t border-white/10 bg-navy px-4 py-3 md:hidden">
+        <nav className="border-t border-sand/10 bg-ink px-4 py-3 md:hidden">
           {LINKS.map(([href, label]) => (
             <a
               key={href}
               href={href}
               onClick={() => setOpen(false)}
-              className="block py-2 text-white/85"
+              className="block py-2 text-sand/85"
             >
               {label}
             </a>
@@ -80,7 +81,7 @@ export default function Nav() {
           <a
             href="#reservar"
             onClick={() => setOpen(false)}
-            className="mt-2 block rounded-full bg-gold px-4 py-2 text-center font-semibold text-navy"
+            className="dusk-gradient mt-2 block rounded-full px-4 py-2 text-center font-semibold text-ink"
           >
             Reservar
           </a>

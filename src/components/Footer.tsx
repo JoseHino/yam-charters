@@ -11,12 +11,11 @@ const LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-navy-700 py-10 text-sm text-white/60">
+    <footer className="bg-ink py-12 text-sm text-sand/55">
       <div className="mx-auto max-w-6xl px-4 text-center">
-        <p className="font-display text-2xl font-semibold text-white">⛵ {BRAND.name}</p>
-        <p className="mt-1 text-white/70">
-          {BOAT.model} · {BOAT.location}
-        </p>
+        <p className="font-display text-3xl text-sand">{BRAND.name}</p>
+        <p className="logmark mt-2 text-dawn">36°29′N · 4°57′O · {BOAT.location}</p>
+        <p className="mt-1 text-sand/60">{BOAT.model}</p>
 
         <nav className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
           {LINKS.map(([href, label]) => (

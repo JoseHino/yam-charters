@@ -1,104 +1,159 @@
 @import "tailwindcss";
 
+/* ====================================================================
+   Bitácora del atardecer — sistema de diseño
+   Paleta: crepúsculo mediterráneo (mar petróleo · lienzo de vela ·
+   degradado de sunset coral→albaricoque→rosa) + latón.
+   Tipografía: Instrument Serif (display) · Archivo (texto) · Space Mono (datos).
+   Los nombres de token se conservan (navy/sea/sand/gold) para re-vestir
+   automáticamente los componentes existentes; cambian sus VALORES.
+   ==================================================================== */
 @theme {
-  --color-navy: #0d2b45;
-  --color-navy-700: #133a5e;
-  --color-sea: #1f7a8c;
-  --color-sand: #f4efe6;
-  --color-gold: #c9a14a;
+  --color-navy: #08272e;      /* mar petróleo al anochecer (fondo oscuro) */
+  --color-navy-700: #0e3a42;  /* superficie oscura elevada */
+  --color-sea: #3a8c86;       /* jade / turquesa marino (secundario) */
+  --color-sand: #ece5d3;      /* lienzo de vela (fondo claro) */
+  --color-gold: #e8663b;      /* SOL coral — acento principal */
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  /* tokens del degradado de atardecer (la firma) */
+  --color-dawn: #f4a15c;      /* albaricoque */
+  --color-rose: #c8436b;      /* rosa dusk */
+  --color-brass: #b8894a;     /* latón / teca barnizada */
+  --color-ink: #071e24;       /* tinta de bitácora */
+
+  --font-sans: "Archivo", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-mono: "Space Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 72px; /* deja hueco para la barra fija al saltar a anclas */
+  scroll-padding-top: 76px;
 }
 
 body {
   margin: 0;
   font-family: var(--font-sans);
   background: var(--color-sand);
-  color: #1b2733;
+  color: #1a2c30;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Titulares con la tipografía display */
+/* Titulares: display serif de alto contraste, grande y con aire */
 h1, h2, h3, .font-display {
   font-family: var(--font-display);
-  letter-spacing: -0.01em;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  line-height: 1.02;
 }
 
-/* Selección de texto con color de marca */
+/* Etiqueta de bitácora: mono, versalitas, tracking amplio */
+.logmark {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
 ::selection {
   background: var(--color-gold);
-  color: var(--color-navy);
+  color: #fff;
 }
 
-/* Campo de formulario reutilizable */
+/* Coordenadas del amarre — motivo recurrente */
+.coords { font-family: var(--font-mono); letter-spacing: 0.08em; }
+
+/* Degradado de atardecer reutilizable */
+.dusk-gradient {
+  background: linear-gradient(100deg, var(--color-rose) 0%, var(--color-gold) 45%, var(--color-dawn) 100%);
+}
+.dusk-text {
+  background: linear-gradient(100deg, var(--color-rose), var(--color-gold) 55%, var(--color-dawn));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Regla de horizonte: fina línea con un "sol" a la izquierda */
+.horizon {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.horizon::before {
+  content: "";
+  width: 0.5rem; height: 0.5rem; border-radius: 999px;
+  background: var(--color-gold);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-gold) 22%, transparent);
+  flex: none;
+}
+.horizon::after {
+  content: "";
+  height: 1px; flex: 1;
+  background: linear-gradient(to right, color-mix(in srgb, currentColor 45%, transparent), transparent);
+}
+
+/* Trama de carta náutica (rejilla suave) para fondos claros */
+.chartgrid {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color-navy) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-navy) 6%, transparent) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* Campo de formulario (usado por Booking) */
 .input {
   width: 100%;
-  border-radius: 0.75rem;
-  border: 1px solid #d5dbe3;
+  border-radius: 0.5rem;
+  border: 1px solid #cfd8d2;
   background: #fff;
   padding: 0.625rem 0.75rem;
   font-size: 0.95rem;
-  color: #1b2733;
+  font-family: var(--font-sans);
+  color: #1a2c30;
   outline: none;
   transition: border-color 0.15s, box-shadow 0.15s;
 }
 .input:focus {
-  border-color: var(--color-sea);
-  box-shadow: 0 0 0 3px rgba(31, 122, 140, 0.15);
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-gold) 18%, transparent);
 }
 
 /* ---------- Animaciones ---------- */
-
-/* Aparición al hacer scroll (lo activa el componente <Reveal/>) */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(26px);
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
+.reveal.is-visible { opacity: 1; transform: none; }
 
-/* Zoom lento tipo "Ken Burns" para la imagen del hero */
-@keyframes kenburns {
-  from { transform: scale(1); }
-  to { transform: scale(1.12); }
-}
-.animate-kenburns {
-  animation: kenburns 18s ease-out forwards;
-}
+@keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.12); } }
+.animate-kenburns { animation: kenburns 20s ease-out forwards; }
 
-/* Latido suave para el botón flotante de WhatsApp */
+/* El sol asciende y crece levemente al cargar el hero */
+@keyframes sunrise {
+  from { transform: translateY(24px) scale(0.9); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+.animate-sunrise { animation: sunrise 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
 @keyframes softpulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45); }
   50% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
 }
-.animate-softpulse {
-  animation: softpulse 2.4s ease-out infinite;
-}
+.animate-softpulse { animation: softpulse 2.4s ease-out infinite; }
 
-/* Indicador de scroll en el hero */
 @keyframes bobbing {
-  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  0%, 100% { transform: translateY(0); opacity: 0.65; }
   50% { transform: translateY(8px); opacity: 1; }
 }
-.animate-bobbing {
-  animation: bobbing 1.8s ease-in-out infinite;
-}
+.animate-bobbing { animation: bobbing 1.8s ease-in-out infinite; }
 
-/* Respeta a quien prefiere menos movimiento */
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
-  .animate-kenburns, .animate-softpulse, .animate-bobbing { animation: none; }
+  .animate-kenburns, .animate-softpulse, .animate-bobbing, .animate-sunrise { animation: none; }
   html { scroll-behavior: auto; }
 }

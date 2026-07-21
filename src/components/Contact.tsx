@@ -20,15 +20,15 @@ export default function Contact() {
     `&layer=mapnik&marker=${lat}%2C${lng}`
 
   return (
-    <section id="contacto" className="bg-navy py-16 text-white sm:py-20">
-      <div className="mx-auto max-w-5xl px-4">
-        <Reveal className="mb-10 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">Contacto y ubicación</p>
-          <h2 className="mt-2 text-3xl font-semibold sm:text-4xl">¿Hablamos?</h2>
-          <p className="mx-auto mt-3 max-w-xl text-white/70">
-            Reserva tu salida o resuelve tus dudas. Te respondemos al momento por WhatsApp.
+    <section id="contacto" className="bg-ink py-20 text-sand sm:py-24">
+      <div className="mx-auto max-w-5xl px-4 sm:px-8">
+        <Reveal className="mb-12">
+          <p className="logmark text-dawn">06 — Puerto de salida · {`36°29′N · 4°57′O`}</p>
+          <h2 className="mt-3 text-[2.4rem] leading-[0.98] text-sand sm:text-5xl">¿Zarpamos?</h2>
+          <p className="mt-4 max-w-xl text-sand/70">
+            Reserva tu travesía o resuelve tus dudas. Te respondemos al momento por WhatsApp.
           </p>
-          <span className="mx-auto mt-4 block h-px w-16 bg-gradient-to-r from-transparent via-gold to-transparent" />
+          <div className="horizon mt-6 text-sand/30" />
         </Reveal>
 
         <div className="grid gap-4 sm:grid-cols-3">
