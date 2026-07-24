@@ -5,7 +5,7 @@
 export type Duration = 2 | 3 | 4 | 6 | 8
 export type Season = "baja" | "alta"
 
-/** Ruta base (en GitHub Pages la web vive bajo /yam-charters/). */
+/** Ruta base (la web vive en la raíz de yam-charters.github.io). */
 const BASE = import.meta.env.BASE_URL
 
 /** Resuelve una imagen de public/img respetando la ruta base. */

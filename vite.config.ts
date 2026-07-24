@@ -2,12 +2,11 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-// Base path para GitHub Pages (proyecto): https://<usuario>.github.io/<repo>/
-// En local (dev) usamos '/'. En el build de Pages, GITHUB_PAGES=1 activa el prefijo.
-const base = process.env.GITHUB_PAGES ? '/yam-charters/' : '/'
+// La web vive en la raíz del dominio (https://yam-charters.github.io/),
+// así que la base es '/' tanto en local como en el build de Pages.
 
 // https://vite.dev/config/
 export default defineConfig({
-  base,
+  base: '/',
   plugins: [react(), tailwindcss()],
 })
